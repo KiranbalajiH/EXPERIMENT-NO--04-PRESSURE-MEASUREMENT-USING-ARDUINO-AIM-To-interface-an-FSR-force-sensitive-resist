@@ -2,7 +2,7 @@
 
 # DATE : 4-3-24
 # NAME :KiranBalaji H
-# ROLLNUMBER :212223040083
+# ROLLNUMBER :212223040096
 # DEPARTMENTCSE
 ## AIM: 
 To interface an FSR(force sensitive resistor) and scale the output voltage obtained to pressure applied 
