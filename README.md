@@ -26,7 +26,8 @@ FSRs are basically a resistor that changes its resistive value (in ohms Ω) depe
 
 
 
-![image](https://user-images.githubusercontent.com/36288975/163532957-82d57567-a1c3-48c5-8a87-7ea66d6fca49.png)
+![Screenshot 2024-03-01 124738](https://github.com/KiranbalajiH/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/149135475/4802c123-6e4e-4204-a237-a5a5ada4da22)
+
 
 
 
@@ -37,7 +38,7 @@ FSRs are often a polymer with conductive material silk-screened on. That means t
 
 The easiest way to measure a resistive sensor is to connect one end to power and the other to a pull-down resistor to ground. Then the point between the fixed pull down resistor and the variable FSR resistor is connected to the analog input of a microcontroller such as an Arduino The way this works is that as the resistance of the FSR decreases, the total resistance of the FSR and the pull down resistor decreases from about 100Kohm to 10Kohm. That means that the current flowing through both resistors increases which in turn causes the voltage across the fixed 10K resistor to increase.
 
- ![image](https://user-images.githubusercontent.com/36288975/163532972-2b909551-12c9-485d-adb1-d1e988d557bd.png)
+ 
 
 ### TABLE -01 FORCE AND OUTPUT VOLTAGES**
 	
@@ -50,6 +51,7 @@ The easiest way to measure a resistive sensor is to connect one end to power and
 
 
 
+![Screenshot 2024-03-01 124750](https://github.com/KiranbalajiH/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/149135475/3ed96894-f8c7-4d8d-8129-f74039f741e0)
 
 
 
@@ -57,12 +59,14 @@ The easiest way to measure a resistive sensor is to connect one end to power and
 
 
 
-![image](https://user-images.githubusercontent.com/36288975/163532979-a2a5cb5c-f495-442c-843e-bebb82737a35.png)
+!![Screenshot 2024-03-01 124111](https://github.com/KiranbalajiH/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/149135475/40eefb8b-b047-40fd-9359-8ebb45abf21a)
+
 
 
 
 ### FIGURE-03 CIRCUIT DIAGRAM
 
+![Screenshot 2024-03-04 083504](https://github.com/KiranbalajiH/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/149135475/1a20f303-50c4-4d3a-a87f-52ead2f2befd)
 
 
 ### PROCEDURE:
@@ -79,26 +83,52 @@ The easiest way to measure a resistive sensor is to connect one end to power and
 
 
 ### PROGRAM 
- *your roll no 
- * your name 
- * department and year 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+ *your roll no 212223040096
+ * your name KiranBalaji H
+ * department and year CSE Ist year
 
-![image](https://user-images.githubusercontent.com/36288975/188804653-a3154e8e-2655-46f2-9dcd-f425dd1ba109.png)
+
+ int LED=7;
+int fsr;
+void setup()
+{
+  pinMode(LED, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  fsr=analogRead(A0);
+  Serial.print("raw values=");
+  Serial.println(fsr);
+  delay(1000);
+  int m;
+  m = map(fsr,0,159,0,10);
+   Serial.print("mapped values=");
+  Serial.println(m);
+  delay(1000);
+  
+  if(m>5)
+  {
+    digitalWrite(LED,HIGH);
+    delay(500);
+    digitalWrite(LED,LOW);
+    delay(500);
+  }
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
 ### TABLE -02 standard deviation table 
@@ -114,9 +144,8 @@ N is the total number of values
 
 For those unfamiliar with summation notation, the equation above may seem daunting, but when addressed through its individual components, this summation is not particularly complicated. The i=1 in the summation indicates the starting index, i.e. for the data set 1, 3, 4, 7, 8, i=1 would be 1, i=2 would be 3, and so on. Hence the summation notation simply means to perform the operation of (xi - μ)2 on each value through N, which in this case is 5 since there are 5 values in this data set.
 
-EX:           μ = (1+3+4+7+8) / 5 = 4.6        
-σ = √[(1 - 4.6)2 + (3 - 4.6)2 + ... + (8 - 4.6)2)]/5
-σ = √(12.96 + 2.56 + 0.36 + 5.76 + 11.56)/5 = 2.577
+EX:           μ = (2+2+4+5+6+7+8+9+10)/10 = 6.1
+σ = √[(2-6.1)^2 + (2 - 6.1)^2 + ... + (10 - 6.1)^2)]/10 σ = √(16.81 + 16.81 + ....+15.21 )/10 = 0.842
 
 
 
